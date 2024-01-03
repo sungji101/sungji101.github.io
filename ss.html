@@ -17,7 +17,7 @@
         <h1 class="text-3xl font-bold my-6">성지한방내과한의원 주문 페이지</h1>
         <p style="color: grey; font-size: larger; margin-bottom: 2rem;">✅ 수량은 주문 시 선택 가능합니다</p>
 
-        <div class="mb-4">
+        <div class="mb-4 flex items-center justify-between">
             <label for="search-box" class="block text-lg mb-2">
                 <input type="text" id="search-box" placeholder="검색어 입력"
                     class="shadow border rounded py-2 px-3 text-grey-darker mr-2">
@@ -27,8 +27,11 @@
         </div>
 
         <div class="mb-4">
+            <label for="sort-order" class="block text-lg mb-2">
+                정렬 순서:
             </label>
-            <select id="sort-order" onchange="sortProducts()">
+            <select id="sort-order" onchange="sortProducts()"
+                class="shadow border rounded py-2 px-3 text-grey-darker">
                 <option value="asc">가격 낮은순</option>
                 <option value="desc">가격 높은순</option>
             </select>
@@ -39,44 +42,47 @@
         </div>
     </div>
 
-    <script>
-        // JavaScript for search functionality
-        const products = [
-          { name: '청윤한S (위식도 운동 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF'},
-          { name: '정윤환K (위식도 점막 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '위비정 (과민성대장 만성설사 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '치뇨단 (과민성방광 소변 전립선 한약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '쾌통한 (만성 변비 장무력증 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '위비음 (게실염 준비된 탕약/위비정과 성분다름)', price: '150,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '순류음 (미식 어지러움 전용 준비된 탕약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '쾌통음 (장무력증 준비된 탕약: 쾌통한과 성분다음)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '코로숨 (알러지비염 호흡 기관지 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '필소단 (다이어트 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '잠온단 (불면 불안 신경안정 한약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '마디정 (관절 인대 보장 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '탕약 (위장 운동 준비된 탕약 정윤환S 같은성분)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '탕약 (위장 점막 준비된탕약 정윤환K 같은성분)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '탕약 (과민성대장 준비된 방약 위비정 같은성분)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '탕약 (소변 방황 전립선 준비된 탕약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '기타 (공진단 경옥고/ 다른 준비된 탕약 등)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' },
-          { name: '개인 맞춤 탕약', price: '400,000원', site: 'https://payapp.kr/L/z2pfmF' }
-
-        ];
-
+   <script>
+  // JavaScript for search functionality
+  const products = [
+    { name: '청윤한S (위식도 운동 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true },
+    { name: '정윤환K (위식도 점막 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true },
+    { name: '위비정 (과민성대장 만성설사 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '치뇨단 (과민성방광 소변 전립선 한약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '쾌통한 (만성 변비 장무력증 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '위비음 (게실염 준비된 탕약/위비정과 성분다름)', price: '150,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '순류음 (미식 어지러움 전용 준비된 탕약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '쾌통음 (장무력증 준비된 탕약: 쾌통한과 성분다음)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '코로숨 (알러지비염 호흡 기관지 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF' , freeShipping: true },
+    { name: '필소단 (다이어트 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '잠온단 (불면 불안 신경안정 한약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '마디정 (관절 인대 보장 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '탕약 (위장 운동 준비된 탕약 정윤환S 같은성분)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '탕약 (위장 점막 준비된탕약 정윤환K 같은성분)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '탕약 (과민성대장 준비된 방약 위비정 같은성분)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '탕약 (소변 방황 전립선 준비된 탕약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '기타 (공진단 경옥고/ 다른 준비된 탕약 등)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
+    { name: '개인 맞춤 탕약', price: '400,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  }
+  ];
         function displayProducts(filteredProducts) {
-            const productList = document.getElementById('product-list');
-            productList.innerHTML = ''; // Clear the list
-            filteredProducts.forEach(product => {
-                const productElement = document.createElement('div');
-                productElement.className = 'border p-4 rounded shadow-lg bg-white';
-                productElement.innerHTML = `
-                    <h2 class="text-lg font-semibold mb-2">${product.name}</h2>
-                    <p class="mb-2">${product.price}</p>
-                    <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='${product.site}'">구매하기</button>
-                `;
-                productList.appendChild(productElement);
-            });
-        }
+    const productList = document.getElementById('product-list');
+    productList.innerHTML = ''; // Clear the list
+
+    filteredProducts.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'border p-4 rounded shadow-lg bg-white';
+        
+        // Check if free shipping is available
+        const freeShippingBox = product.freeShipping ? `<div class="float-right border border-green-500 text-green-500 rounded px-2 py-1">무료배송</div>` : '';
+
+        productElement.innerHTML = `
+            <h2 class="text-lg font-semibold mb-2">${product.name}</h2>
+            <p class="mb-2">${product.price}${freeShippingBox}</p>
+            <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='${product.site}'">구매하기</button>
+        `;
+        productList.appendChild(productElement);
+    });
+}
 
         document.getElementById('search-box').addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
