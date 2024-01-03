@@ -1,6 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Display</title>
+</head>
+<body>
+    <script>
+        // 현재 날짜와 시간을 가져오기
+        var currentDate = new Date();
 
+        // 현재 시간을 가져오기
+        var currentHour = currentDate.getHours();
+
+        // 요일 배열 정의
+        var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
+
+        // 날짜 계산
+        var displayDate;
+
+        if (currentHour >= 18) {
+            // 6시 이후에는 내일로 표시
+            var nextDate = new Date(currentDate);
+            nextDate.setDate(currentDate.getDate() + 1);
+            displayDate = '모래(' + daysOfWeek[nextDate.getDay()] + ') 도착 예정';
+        } else {
+            // 6시 이전에는 다음 날로 표시
+            var tomorrowDate = new Date(currentDate);
+            tomorrowDate.setDate(currentDate.getDate() + 1);
+            displayDate = '내일(' + daysOfWeek[tomorrowDate.getDay()] + ') 도착 예정';
+        }
+
+        // 변수에 저장된 날짜를 사용하여 다른 작업 수행 가능
+        console.log('날짜 변수:', displayDate);
+    </script>
+</body>
+</html>
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,7 +63,7 @@
         </div>
 
         <div class="mb-4">
-            </label>
+             </label>
             <select id="sort-order" onchange="sortProducts()"
                 class="shadow border rounded py-2 px-3 text-grey-darker">
                 <option value="asc">가격 낮은순</option>
@@ -41,9 +77,11 @@
     </div>
 
    <script>
+
+    
   // JavaScript for search functionality
   const products = [
-    { name: '청윤한S (위식도 운동 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true },
+    { name: '청윤한S (위식도 운동 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true, displayDate: false },
     { name: '정윤환K (위식도 점막 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true },
     { name: '위비정 (과민성대장 만성설사 환약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
     { name: '치뇨단 (과민성방광 소변 전립선 한약)', price: '99,000원', site: 'https://payapp.kr/L/z2pfmF', freeShipping: true  },
@@ -72,11 +110,15 @@
         
         // Check if free shipping is available
         const freeShippingBox = product.freeShipping ? `<div class="float-right border border-green-500 text-green-500 rounded px-2 py-1">무료배송</div>` : '';
+      // ... (나머지 코드 부분은 그대로 유지합니다)
 
         productElement.innerHTML = `
             <h2 class="text-lg font-semibold mb-2">${product.name}</h2>
-            <p class="mb-2">${product.price}${freeShippingBox}</p>
+            <p class="mb-2" style="color: #B92D1A; font-weight: bold;">${product.price}</p>
+            <p style="color: green; margin-bottom: 10px; line-height: 1.5;">${displayDate}${freeShippingBox}</p>
             <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='${product.site}'">구매하기</button>
+        
+            
         `;
         productList.appendChild(productElement);
     });
@@ -117,3 +159,4 @@
 </body>
 
 </html>
+
