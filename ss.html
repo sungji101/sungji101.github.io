@@ -19,7 +19,7 @@
 
         <div class="mb-4">
             <label for="search-box" class="block text-lg mb-2">
-                <input type="text" id="search-box" placeholder="검색창"
+                <input type="text" id="search-box" placeholder="검색어 입력"
                     class="shadow border rounded py-2 px-3 text-grey-darker mr-2">
                 <button id="search-button"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">검색</button>
@@ -72,7 +72,7 @@
                 productElement.innerHTML = `
                     <h2 class="text-lg font-semibold mb-2">${product.name}</h2>
                     <p class="mb-2">${product.price}</p>
-                    <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='${product.site}'">선택</button>
+                    <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="window.location.href='${product.site}'">구매하기</button>
                 `;
                 productList.appendChild(productElement);
             });
