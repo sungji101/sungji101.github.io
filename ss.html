@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +10,11 @@
         // 현재 날짜와 시간을 가져오기
         var currentDate = new Date();
 
-        // 현재 시간을 가져오기
-        var currentHour = currentDate.getHours();
+        // 현재 요일을 가져오기 (0: 일요일, 1: 월요일, ..., 6: 토요일)
+        var currentDay = currentDate.getDay();
+
+        // 현재 시간을 15시로 설정
+        currentDate.setHours(15, 0, 0, 0);
 
         // 요일 배열 정의
         var daysOfWeek = ['일', '월', '화', '수', '목', '금', '토'];
@@ -19,21 +22,39 @@
         // 날짜 계산
         var displayDate;
 
-        if (currentHour >= 18) {
-            // 6시 이후에는 내일로 표시
-            var nextDate = new Date(currentDate);
-            nextDate.setDate(currentDate.getDate() + 1);
-            displayDate = '모래(' + daysOfWeek[nextDate.getDay()] + ') 도착 예정';
+        if (currentDay >= 1 && currentDay <= 3) {
+            // 월요일부터 수요일까지는 15시 이후에는 모래 도착 예정
+            if (currentDate.getHours() >= 15) {
+                var dayAfterTomorrowDate = new Date(currentDate);
+                dayAfterTomorrowDate.setDate(currentDate.getDate() + 2);
+                displayDate = '모레(' + daysOfWeek[dayAfterTomorrowDate.getDay()] + ') 도착 예정';
+            } else {
+                // 15시 이전에는 내일로 표시
+                var tomorrowDate = new Date(currentDate);
+                tomorrowDate.setDate(currentDate.getDate() + 1);
+                displayDate = '내일(' + daysOfWeek[tomorrowDate.getDay()] + ') 도착 예정';
+            }
         } else {
-            // 6시 이전에는 다음 날로 표시
-            var tomorrowDate = new Date(currentDate);
-            tomorrowDate.setDate(currentDate.getDate() + 1);
-            displayDate = '내일(' + daysOfWeek[tomorrowDate.getDay()] + ') 도착 예정';
+            // 나머지 요일은 15시 이후에는 모래 도착 예정
+            if (currentDate.getHours() >= 15) {
+                var dayAfterTomorrowDate = new Date(currentDate);
+                dayAfterTomorrowDate.setDate(currentDate.getDate() + 2);
+                displayDate = '모레(' + daysOfWeek[dayAfterTomorrowDate.getDay()] + ') 도착 예정';
+            } else {
+                // 15시 이전에는 내일로 표시
+                var tomorrowDate = new Date(currentDate);
+                tomorrowDate.setDate(currentDate.getDate() + 1);
+                displayDate = '내일(' + daysOfWeek[tomorrowDate.getDay()] + ') 도착 예정';
+            }
         }
 
-        // 변수에 저장된 날짜를 사용하여 다른 작업 수행 가능
-        console.log('날짜 변수:', displayDate);
-    </script>
+  </script>
+</body>
+</html>
+        </script>
+    </body>
+    </html>
+    
 </body>
 </html>
     
@@ -124,19 +145,33 @@
     });
 }
 
-        document.getElementById('search-box').addEventListener('keyup', (event) => {
+document.getElementById('search-box').addEventListener('keyup', (event) => {
             if (event.key === 'Enter') {
-                const searchWord = document.getElementById('search-box').value.toLowerCase();
-                const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchWord));
-                displayProducts(filteredProducts);
+                handleSearch();
             }
         });
 
         document.getElementById('search-button').addEventListener('click', () => {
+            handleSearch();
+        });
+
+        function handleSearch() {
             const searchWord = document.getElementById('search-box').value.toLowerCase();
             const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchWord));
-            displayProducts(filteredProducts);
-        });
+            
+            if (filteredProducts.length === 0) {
+                displayNoResultsMessage();
+            } else {
+                displayProducts(filteredProducts);
+            }
+        }
+
+        function displayNoResultsMessage() {
+            // 'product-list'라는 ID를 가진 요소가 제품을 표시하는데 사용된다고 가정합니다.
+            const productList = document.getElementById('product-list');
+            productList.innerHTML = '<p style="font-weight: bold; font-size: 1.2em; text-align: center;">결과가 없습니다.</p>';
+
+        }
 
         function sortProducts() {
             const sortOrderSelect = document.getElementById('sort-order');
@@ -153,10 +188,44 @@
             displayProducts(sortedProducts);
         }
 
-        // Initially display all products
+        // 초기에 모든 제품을 표시합니다.
         displayProducts(products);
     </script>
 </body>
 
 </html>
 
+<<head>
+    <style>
+        #no-results-message {
+            font-weight: bold;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        /* footer를 디자인하는 스타일 추가 */
+        footer {
+            background-color: #f4f4f4;
+            padding: 20px; /* 간격을 늘림 */
+            text-align: center;
+            margin-top: 20px; /* 사이트와 하단 간격을 늘림 */
+        }
+    </style>
+    <!-- 여기에 head 내용을 추가하세요 -->
+</head>
+
+<body>
+
+    <!-- 여기에 HTML 내용을 추가하세요 -->
+
+    <script>
+        // 기존 자바스크립트 코드를 여기에 추가하세요.
+    </script>
+
+    <!-- footer 추가 -->
+    <footer>
+        <p>성지한방내과한의원 | 우성호 | 서울 성동구 금호동3가 896 금일빌딩 4층 </p>
+        <p>사업자등록번호: 206-93-49976 | 전화번호: 1899-4780 | 기타: 하나은행 490-910191-28607 우성호(성지한의원)
+</body>
+
+</html>
