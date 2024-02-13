@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tailwind CSS CDN을 추가합니다. -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-8">
+
+    <div class="max-w-md mx-auto bg-white rounded-2xl p-7 shadow-md">
+        <h1 class="text-2xl font-bold mb-2">[코더] 동아리 출석 포기</h1>
+        <p class="text-gray-500 mb-4">출석 2회 누락시 코딩 자율동아리 [코더]에서는 생활기록부 기재가 불가한 점 안내 드립니다. <br>2회 출석 누락시 생활기록부 기재를 원하실 경우에는 추가 보충수업을 수강하셔야 합니다.
+            
+        </p>
+
+        <form action="https://formcarry.com/s/8UL7f9D7tni" method="POST" enctype="multipart/form-data">
+                      <!-- 회차 선택 -->
+                      <div class="mb-4">
+                        <label for="meeting" class="block text-sm font-medium text-gray-700">회차</label>
+                        <select id="meeting" name="meeting"
+                            class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-indigo-500">
+                            <option value="1">1회차(4월 22일)</option>
+                        </select>
+                    </div>
+            <!-- 학생 이름 입력 -->
+            <div class="mb-4">
+                <label for="studentName" class="block text-sm font-medium text-gray-700">학생 이름</label>
+                <input type="text" id="studentName" name="studentName"
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-indigo-500"
+                    placeholder="이름을 입력해주세요" required>
+            </div>
+            <!-- 이메일 입력 -->
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">이메일</label>
+                <input type="email" id="email" name="email"
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-indigo-500"
+                    placeholder="이메일을 입력해주세요" required>
+            </div>
+            <!-- 학교 입력 -->
+            <div class="mb-4">
+                <label for="grade" class="block text-sm font-medium text-gray-700">학교</label>
+                <select id="grade" name="grade"
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-indigo-500">
+                    <option value="1">목일중학교</option>
+                </select>
+            </div>
+
+            <!-- 반 번호 입력 -->
+            <div class="mb-4">
+                <label for="classNumber" class="block text-sm font-medium text-gray-700">반/번호</label>
+                <input type="text" id="classNumber" name="classNumber"
+                    class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-indigo-500"
+                    placeholder="학번을 입력해주세요" required>
+            </div>
+            <!-- 학년 선택 -->
+
+
+
+            <!-- 제출 버튼 -->
+            <div>
+                <button type="submit"
+                    class="w-full bg-indigo-500 text-white p-2 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:border-indigo-700">
+                    제출하기
+                </button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
